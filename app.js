@@ -30,9 +30,9 @@ app.get('/create', (req, res) => {
 app.post('/create', (req, res) => {
     let user = {
         uid: userIndex,
-        name: req.name,
-        email: req.email,
-        age: req.age
+        name: req.body.name,
+        email: req.body.email,
+        age: req.body.age
     };
     userIndex++;
 
@@ -42,10 +42,23 @@ app.post('/create', (req, res) => {
 });
 
 app.get('/userlist', (req, res) => {
+
+    console.log(users);
+
+
     res.render('user-listing', {
         userList: users
     });
 });
+
+app.get('/edit/:userid', (req, res) => {
+    console.log(users);
+
+    res.render('edit-user', {
+        userList: users
+    });
+});
+
 
 
 app.listen(port);
