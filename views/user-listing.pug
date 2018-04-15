@@ -2,17 +2,21 @@ doctype html
 html
     head
         title User Manager
+        style
+            include includes/userList.css
     body
         h3 User Listing
         div(class='users')
-            each user in users
+            each user in userList
                 div(class='user')
                     ul
                         li Name:
-                        span= user.name
+                            span= user.name
 
                         li Email Address:
-                        span= user.email
+                            span= user.email
 
                         li Age:
-                        span= user.age
+                            span= user.age
+                    a(href='/edit') Edit User
+                    a Delete User

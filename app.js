@@ -10,15 +10,42 @@ app.use('/', express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
 let userIndex = 0;
-let users = {};
+let users = [{uid: 0, name:'chaika', email:'a@a.com', age: 14},
+    {uid: 1, name:'chaika', email:'a@a.com', age: 14},
+    {uid: 2, name:'chaika', email:'a@a.com', age: 14},
+    {uid: 3, name:'chaika', email:'a@a.com', age: 14}];
 
 app.get('/', (req, res) => {
     res.render('index.pug');
 });
 
 app.get('/create', (req, res) => {
-
+    res.render('create-user');
 });
+
+app.post('/create', (req, res) => {
+    let user = {
+        uid: userIndex,
+        name: req.name,
+        email: req.email,
+        age: req.age
+    };
+    userIndex++;
+
+    users.push(user);
+
+    res.redirect('/userlist');
+});
+
+app.get('/userlist', (req, res) => {
+    res.render('user-listing', {
+        userList: users
+    });
+});
+
 
 app.listen(port);
