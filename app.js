@@ -14,12 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 let userIndex = 0;
-let users = [{uid: 0, name:'chaika', email:'a@a.com', age: 14}];
-
-//{uid: 0, name:'chaika', email:'a@a.com', age: 14},
-//{uid: 1, name:'chaika', email:'a@a.com', age: 14},
-//{uid: 2, name:'chaika', email:'a@a.com', age: 14},
-//{uid: 3, name:'chaika', email:'a@a.com', age: 14}
+let users = [];
 
 app.get('/', (req, res) => {
     res.render('index.pug');
@@ -44,19 +39,12 @@ app.post('/create', (req, res) => {
 });
 
 app.get('/userlist', (req, res) => {
-
-    console.log(users);
-
-
     res.render('user-listing', {
         userList: users
     });
 });
 
 app.get('/edit/:userid', (req, res) => {
-    console.log(users);
-    console.log(req.params.userid);
-
     let elementPosition;
 
     for(let i = 0; i <= users.length; i++){
@@ -66,18 +54,29 @@ app.get('/edit/:userid', (req, res) => {
         }
     }
 
-    // let elementPosition = users.map((x) => {return x.uid}).indexOf(req.params.userid);
     let user = users[elementPosition];
 
     users.splice(elementPosition, 1);
-
-    console.log(user);
 
     res.render('edit-user', {
         editUser: user
     });
 });
 
+app.get('/delete/:userid', (req, res) => {
 
+    let elementPosition;
+
+    for(let i = 0; i <= users.length; i++){
+        if(users[i].uid == req.params.userid){
+            elementPosition = i;
+            break;
+        }
+    }
+    users.splice(elementPosition, 1);
+
+
+    res.redirect('/userlist');
+});
 
 app.listen(port);

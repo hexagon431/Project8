@@ -6,13 +6,13 @@ html
         form(method="POST", action="/create")
             div(class='inputs')
                 div
-                    label(for='name') Name
+                    label(for='name') Name:
                     input(id='name', name='name', value=editUser.name)
                 div
-                    label(for='email') Email Address
+                    label(for='email') Email Address:
                     input(id='email', name='email', value=editUser.email)
                 div
-                    label(for='age') Age
+                    label(for='age') Age:
                     input(id='age', name='age', value=editUser.age)
                 div
                     input(type='submit', value='Save Changes')
