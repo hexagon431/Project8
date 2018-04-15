@@ -14,10 +14,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 let userIndex = 0;
-let users = [{uid: 0, name:'chaika', email:'a@a.com', age: 14},
-    {uid: 1, name:'chaika', email:'a@a.com', age: 14},
-    {uid: 2, name:'chaika', email:'a@a.com', age: 14},
-    {uid: 3, name:'chaika', email:'a@a.com', age: 14}];
+let users = [{uid: 0, name:'chaika', email:'a@a.com', age: 14}];
+
+//{uid: 0, name:'chaika', email:'a@a.com', age: 14},
+//{uid: 1, name:'chaika', email:'a@a.com', age: 14},
+//{uid: 2, name:'chaika', email:'a@a.com', age: 14},
+//{uid: 3, name:'chaika', email:'a@a.com', age: 14}
 
 app.get('/', (req, res) => {
     res.render('index.pug');
@@ -53,9 +55,26 @@ app.get('/userlist', (req, res) => {
 
 app.get('/edit/:userid', (req, res) => {
     console.log(users);
+    console.log(req.params.userid);
+
+    let elementPosition;
+
+    for(let i = 0; i <= users.length; i++){
+        if(users[i].uid == req.params.userid){
+            elementPosition = i;
+            break;
+        }
+    }
+
+    // let elementPosition = users.map((x) => {return x.uid}).indexOf(req.params.userid);
+    let user = users[elementPosition];
+
+    users.splice(elementPosition, 1);
+
+    console.log(user);
 
     res.render('edit-user', {
-        userList: users
+        editUser: user
     });
 });
 

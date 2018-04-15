@@ -18,5 +18,5 @@ html
 
                         li Age:
                             span= user.age
-                    a(href='/edit') Edit User
-                    a Delete User
+                    a(href='/edit/' + user.uid) Edit User
+                    a(href='/delete/' + user.id) Delete User

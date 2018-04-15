@@ -7,12 +7,12 @@ html
             div(class='inputs')
                 div
                     label(for='name') Name
-                    input(id='name', name='name')
+                    input(id='name', name='name', value=editUser.name)
                 div
                     label(for='email') Email Address
-                    input(id='email', name='email')
+                    input(id='email', name='email', value=editUser.email)
                 div
                     label(for='age') Age
-                    input(id='age', name='age')
+                    input(id='age', name='age', value=editUser.age)
                 div
-                    input(type='submit', value='Edit User')
+                    input(type='submit', value='Save Changes')
