@@ -15,6 +15,7 @@ app.set('view engine', 'pug');
 
 let userIndex = 0;
 let users = [];
+let selectedUserPosition;
 
 app.get('/', (req, res) => {
     res.render('index.pug');
@@ -55,12 +56,25 @@ app.get('/edit/:userid', (req, res) => {
     }
 
     let user = users[elementPosition];
+    selectedUserPosition = elementPosition;
 
-    users.splice(elementPosition, 1);
 
     res.render('edit-user', {
         editUser: user
     });
+});
+
+app.post('/update/:userid', (req, res) => {
+    users[selectedUserPosition] = {
+        uid: req.params.userid,
+        name: req.body.name,
+        email: req.body.email,
+        age: req.body.age
+    };
+
+    selectedUserPosition = -1;
+
+    res.redirect('/userlist');
 });
 
 app.get('/delete/:userid', (req, res) => {

@@ -3,7 +3,7 @@ html
     head
         title Edit User
     body
-        form(method="POST", action="/create")
+        form(method="POST", action="/update/" + editUser.uid)
             div(class='inputs')
                 div
                     label(for='name') Name:
