@@ -6,4 +6,4 @@ click the 'edit' button under any user to update their information
 
 the 'delete user' button is a button that deletes a user
 
-follow @toomuchmoe on tumblr
+follow @toomuchmoe on tumblr he is a pal, buddy, & homie
